@@ -28,9 +28,15 @@ if detail_top:
     full_address = f"{street_address}, {city_state_zip}" if street_address and city_state_zip else None
 
     # Fetch the telephone number
-    phone = info_list.find('a', href=lambda href: href and "tel:" in href).get_text() if info_list.find('a', href=lambda href: href and "tel:" in href) else None
-
-    # Print the extracted information
+    phone = info_list.find('a', href=lambda href: href and "tel:" in href).get_text().strip() if info_list.find('a', href=lambda href: href and "tel:" in href) else None
+    description_div = detail_top.find('div', class_='description hide-expander')
+    content_div = description_div.find('div', class_='content')
+    # Extract and print the text content inside the content_div
+    if content_div:
+        content_text = content_div.get_text(strip=True)
+        print(content_text)
+    else:
+        print("Content not found")
     print("Region:", region)
     print("Address:", full_address)
     print("Telephone:", phone)
