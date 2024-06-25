@@ -5,7 +5,7 @@ from fake_useragent import UserAgent
 import requests
 # Create an HTML session and get the webpage content
 session = HTMLSession()
-r = session.get("https://www.visitomaha.com/listings/a-hill-of-beans/56954/")
+r = session.get("https://www.visitomaha.com/listings/gather-in-omaha/66943/")
 
 # Render the page
 r.html.render()
@@ -26,6 +26,7 @@ if detail_top:
     street_address = info_list.find('span', class_='street-address').get_text() if info_list.find('span', class_='street-address') else None
     city_state_zip = info_list.find('span', class_='city-state-zip').get_text() if info_list.find('span', class_='city-state-zip') else None
     full_address = f"{street_address}, {city_state_zip}" if street_address and city_state_zip else None
+    email = info_list.find('a', href=lambda href: href and "mailto:" in href).get_text() if info_list.find('a', href=lambda href: href and "mailto:" in href) else None
 
     # Fetch the telephone number
     phone = info_list.find('a', href=lambda href: href and "tel:" in href).get_text().strip() if info_list.find('a', href=lambda href: href and "tel:" in href) else None
@@ -40,5 +41,6 @@ if detail_top:
     print("Region:", region)
     print("Address:", full_address)
     print("Telephone:", phone)
+    print("Email:", email)
 else:
     print("Detail section not found")
