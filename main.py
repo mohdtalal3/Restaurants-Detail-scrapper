@@ -50,5 +50,5 @@ full_urls = ["https://www.visitomaha.com" + url for url in main_list]
 df = pd.DataFrame(full_urls, columns=["URLs"])
 
 # Save the DataFrame as a CSV file
-df.to_csv("urls.csv", index=False)
+df.to_csv("full_urls.csv", index=False)
 print("Data saved to urls.csv")
