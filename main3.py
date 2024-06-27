@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import sqlite3
 import time
 
-# Establish SQLite3 connection and cursor
+# Establish SqLite3 connection and cursor
 conn = sqlite3.connect('gather_in_omaha.db')
 cursor = conn.cursor()
 
